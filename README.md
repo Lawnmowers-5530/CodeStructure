@@ -74,6 +74,9 @@ These, functionally, are kinda pointless, but they do provide some nice grouping
 Notice how there are comments showing what the block of code together does, it just helps with understanding, and splitting up functions that could get VERY long into more digestable blocks of what does what
 You do not have to do this, but it's nice
 
+#### Command binding
+Do all the command binding and creation inside the [BindingsInitializer](src/main/java/frc/robot/BindingsInitializer.java) java file. Last year it was also in a seperate file, because it gets very long, we just renamed it from CommandCombinator to something that makes more sense.
+
 ## Git structure
 Our git structure is branch based, with one branch for each feature. If you don't know how to use git, just ask
 
