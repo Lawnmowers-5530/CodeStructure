@@ -85,7 +85,7 @@ public class RobotContainer {
   static Constants constants;
 
   public RobotContainer() {
-    
+    // Init static variables
     {
       subsystems = new Subsystems();
       bindings = new Bindings();

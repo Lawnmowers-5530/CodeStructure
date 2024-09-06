@@ -51,6 +51,29 @@ It just helps make it clearer for other people what your code touches and doesn'
 In special cases like constants it makes it simpler to not do this, but otherwise, do it as much as possible
 Static variables are nice, but it is harder to tell what does what where
 
+#### Curly braces
+You may notice several sets of seemingly useless curly braces
+Like in [RobotContainer](src/main/java/frc/robot/RobotContainer.java)
+```java
+    // Init static variables
+    {                                   // <-- Here
+      subsystems = new Subsystems();
+      bindings = new Bindings();
+      state = new State();
+      constants = new Constants();
+    }
+
+    // Subsystem init goes here, set them statically
+    {                                   // <-- And here
+      // Duplicatable subsystems should be initialized with a constructor that takes a Constants class and a State class
+      Subsystems.example_subsystem = new ExampleSubsystem(new Constants.ExampleSubsystemConstants1(), new State.ExampleSubsystemState1());
+    }
+    // ...
+```
+These, functionally, are kinda pointless, but they do provide some nice grouping of code.
+Notice how there are comments showing what the block of code together does, it just helps with understanding, and splitting up functions that could get VERY long into more digestable blocks of what does what
+You do not have to do this, but it's nice
+
 ## Git structure
 Our git structure is branch based, with one branch for each feature. If you don't know how to use git, just ask
 
