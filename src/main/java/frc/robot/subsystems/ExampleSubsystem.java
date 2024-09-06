@@ -17,11 +17,13 @@ public class ExampleSubsystem extends SubsystemBase{
         //set non static variables
         this.someData = 420;
 
-
         //you should set up some kind of default state for your robot state variables (if any) to make sure that they aren't null
         state.is_example_subsystem_initialized = true;
         state.the_incrementor = constants.startingIncrementorValue;
         state.current_time = Instant.now();
+        
+        this.constants = constants;
+        this.state = state;
     }
 
     public void periodic() {

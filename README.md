@@ -31,9 +31,9 @@ public class DriveTrain extends SubsystemBase {
 }
 ```
 
-#### Multiple sets of constants
-See the [Constants](src/main/java/frc/robot/Constants.java) file for how to have multiple sets of constants, and the [RobotContainer](src/main/java/frc/robot/RobotContainer.java) and [ExampleSubsystem](src/main/java/frc/robot/subsystems/ExampleSubsystem.java) file for how to specify and use them
-If you only have one set of constants, it's probably better to just use a subclass with static variables
+#### Multiple sets of constants / sets of state
+See the [Constants](src/main/java/frc/robot/Constants.java) file for how to have multiple sets of constants, and the [RobotContainer](src/main/java/frc/robot/RobotContainer.java) and [ExampleSubsystem](src/main/java/frc/robot/subsystems/ExampleSubsystem.java) file for how to specify and use multiple sets of constants or state
+If you only have one set of constants or state, it's probably better to just use a subclass with static variables in their respective classes
 
 #### Dependency injection
 Very very fancy term, a lot of people think it's some incredibly hard programming pattern, but, it's literally just passing the data you use into whatever is using it
@@ -41,11 +41,20 @@ Like in the [ExampleSubsystem](src/main/java/frc/robot/subsystems/ExampleSubsyst
 ```java
 public class ExampleSubsystem {
     //                      Literally dependency injection                                          
-    public ExampleSubsystem(ExampleSubsystemConstants constants) {
+    public ExampleSubsystem(ExampleSubsystemConstants constants, ExampleSubsystemState state) {
         // ...
     }
     // ...
 }
 ```
-It just helps make it clearer what your code touches and doesn't touch
+It just helps make it clearer for other people what your code touches and doesn't touch
 In special cases like constants it makes it simpler to not do this, but otherwise, do it as much as possible
+Static variables are nice, but it is harder to tell what does what where
+
+## Git structure
+Our git structure is branch based, with one branch for each feature. If you don't know how to use git, just ask
+
+### Merging branches into main
+If you think a feature is competition ready and have tested it, ask another person to review we want at least 2 people to understand and be able to work with the feature in case it breaks
+Create a pull request on github and ask somebody to review it
+After review has gone through, you can merge.
