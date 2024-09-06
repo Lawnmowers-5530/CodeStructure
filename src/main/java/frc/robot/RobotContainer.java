@@ -58,7 +58,13 @@ public class RobotContainer {
   public class State {
 
     // example robot state
-    public class ExampleSubsystemState {
+    public static abstract class ExampleSubsystemState {
+      public boolean is_example_subsystem_initialized;
+      public int the_incrementor;
+      public Instant current_time;
+    }
+    // also an example of ovveridable static variables for a subsystem
+    public static class ExampleSubsystemState1 extends ExampleSubsystemState{
       public static boolean is_example_subsystem_initialized;
       public static int the_incrementor;
       public static Instant current_time;
@@ -76,13 +82,21 @@ public class RobotContainer {
   static Subsystems subsystems;
   static Bindings bindings;
   static State state;
+  static Constants constants;
 
   public RobotContainer() {
-    Constants constants = new Constants();
+    
+    {
+      subsystems = new Subsystems();
+      bindings = new Bindings();
+      state = new State();
+      constants = new Constants();
+    }
 
     // Subsystem init goes here, set them statically
     {
-      Subsystems.example_subsystem = new ExampleSubsystem(constants.new ExampleSubsystemConstants1());
+      // Duplicatable subsystems should be initialized with a constructor that takes a Constants class and a State class
+      Subsystems.example_subsystem = new ExampleSubsystem(new Constants.ExampleSubsystemConstants1(), new State.ExampleSubsystemState1());
     }
 
     // Controller init

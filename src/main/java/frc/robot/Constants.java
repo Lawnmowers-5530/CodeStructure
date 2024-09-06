@@ -7,18 +7,18 @@ public class Constants {
 
     // Example subsystem uses abstract class for multiple sets of constants
     // May be useful if you have multiple instances of one subsystem (like ultrasonic, or smth)
-    public abstract class ExampleSubsystemConstants {
+    public static abstract class ExampleSubsystemConstants {
         public String someString;
         public int someData;
         public int moreData;  
         public int startingIncrementorValue; 
     }
 
-    public class ExampleSubsystemConstants1 extends ExampleSubsystemConstants {
-        public String someString = "put real config here";
-        public int someData = 12;
-        public int moreData = 5530;
-        public int startingIncrementorValue = 69420;
+    public static class ExampleSubsystemConstants1 extends ExampleSubsystemConstants {
+        public static String someString = "put real config here";
+        public static int someData = 12;
+        public static int moreData = 5530;
+        public static int startingIncrementorValue = 69420;
     }
 
     // Otherwise just make a class with static variables

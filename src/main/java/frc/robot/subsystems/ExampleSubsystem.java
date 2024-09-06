@@ -7,23 +7,26 @@ import frc.robot.RobotContainer.State.ExampleSubsystemState;
 
 public class ExampleSubsystem extends SubsystemBase{
 
-    int some_data;
-    static int some_other_data = 420;
+    ExampleSubsystemConstants constants;
+    ExampleSubsystemState state;
 
-    public ExampleSubsystem(ExampleSubsystemConstants constants) {
+    // Try not to have static variables here, they should either be in constants or in the state class
+    int someData;
+
+    public ExampleSubsystem(ExampleSubsystemConstants constants, ExampleSubsystemState state) {
         //set non static variables
-        this.some_data = 420;
+        this.someData = 420;
 
 
         //you should set up some kind of default state for your robot state variables (if any) to make sure that they aren't null
-        ExampleSubsystemState.is_example_subsystem_initialized = true;
-        ExampleSubsystemState.the_incrementor = constants.starting_incrementor_value;
-        ExampleSubsystemState.current_time = Instant.now();
+        state.is_example_subsystem_initialized = true;
+        state.the_incrementor = constants.startingIncrementorValue;
+        state.current_time = Instant.now();
     }
 
     public void periodic() {
         //update some data
-        ExampleSubsystemState.current_time = Instant.now();
+        state.current_time = Instant.now();
     }
 
     /**
@@ -31,7 +34,7 @@ public class ExampleSubsystem extends SubsystemBase{
      */
 
     public void increment_the_incrementor() {
-        ExampleSubsystemState.the_incrementor++;
+        state.the_incrementor++;
     }
     
 }
