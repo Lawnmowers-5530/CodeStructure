@@ -21,7 +21,7 @@ public class RobotContainer {
    * Addressed externally (from other java files) with RobotContainer.Subsystems.<subsystem name>
    */
 
-  public class Subsystems {
+  class Subsystems {
 
     // example robot subsystem
     static ExampleSubsystem example_subsystem;
@@ -30,11 +30,12 @@ public class RobotContainer {
   /**
    * Bindings go here,
    * Generated and initialized by bindings.java
+   * Should not be accessed by any other subsystem
    * Also make all variables static
    * Addressed externally (from other java files) with RobotContainer.Bindings.<binding name>
    */
 
-  public class Bindings {
+  class Bindings {
 
     // example robot command
     static Command increment_the_incrementor;
@@ -46,6 +47,7 @@ public class RobotContainer {
    * boolean isArmUp
    * boolean isCurrentlyDriving
    * 
+   * access in a static way from every subsystem
    * each subsystem gets it's own subclass
    * 
    * This makes it easier to access, and I don't think we should be using suppliers like we did last year
@@ -67,9 +69,8 @@ public class RobotContainer {
    * Controller storage class
    */
 
-  public class Controllers {
+  class Controllers {
     static CommandXboxController driver_controller;
-  
   }
 
   static Subsystems subsystems;
@@ -77,19 +78,22 @@ public class RobotContainer {
   static State state;
 
   public RobotContainer() {
+    Constants constants = new Constants();
 
     // Subsystem init goes here, set them statically
     {
-      Subsystems.example_subsystem = new ExampleSubsystem();
+      Subsystems.example_subsystem = new ExampleSubsystem(constants.new ExampleSubsystemConstants1());
     }
 
-    // Init bindings
+    // Controller init
     {
-      // controller init
       Controllers.driver_controller = new CommandXboxController(0);
-      
+    }
+
+    // Bindings init 
+    { 
       // bindings init
-      BindingsInitializer.initializeBindings();
+      bindings = BindingsInitializer.initializeBindings(RobotContainer.subsystems, RobotContainer.bindings);
 
       // actually bind the bindings
       Controllers.driver_controller.a().onTrue(Bindings.increment_the_incrementor);
